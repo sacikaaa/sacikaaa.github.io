@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Living-Room</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  </head>
+  <body>
+    <style>
+      .popupbox {
+        width: 50vw;
+        height: 40vh;
+
+        position: fixed;
+        top: 25vh;
+        left: 25vw;
+
+        border: 1px solid #ccc;
+        background-color: white;
+        transition: all 0.5s;
+        display: none;
+      }
+
+      .back_button {
+        width:50px;
+        height: 50px;
+        color: red;
+        font-size:36px;
+        position: absolute;
+        top:25px;
+        right: 10px;
+        font-family: sans-serif;
+        cursor: pointer;
+      }
+
+      .coffee_table {
+        width: 350px; 
+         height: 200px; 
+         position: absolute;
+         top: 80px;
+         left: 25px; 
+         background-image: url('furniture/0181245_PE332924_S4.jpg');
+         background-size: 350px 350px;
+         background-position: 0% 50%;
+      } 
+
+      .tv_bench {
+        width: 300px; 
+         height: 100px; 
+         position: absolute;
+         top: 120px;
+         left: 50px; 
+         background-image: url('furniture/0719192_PE731910_S4.jpg');
+         background-size: 300px 300px;
+         background-position: 0% 50%;
+      } 
+
+      .dining_chair {
+        width: 200px; 
+         height: 200px; 
+         position: absolute;
+         top: 80px;
+         left: 80px; 
+         background-image: url('furniture/0661921_PE712124_S4.jpg');
+         background-size: 200px 200px;
+      } 
+
+      .sofa_bed {
+        width: 300px; 
+         height: 200px; 
+         position: absolute;
+         top: 80px;
+         left: 50px; 
+         background-image: url('furniture/0690268_PE723188_S4.jpg');
+         background-size: 300px 300px;
+         background-position: 0% 70%;
+      } 
+
+      .popupbox h1 {
+        text-align: left;
+        font-family: Verdana;
+        font-weight: bold;
+        font-size: 24px;
+        margin-left: 400px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
+
+      .popupbox p {
+        text-align: left;
+        font-family: Verdana;
+        font-size: 18px;
+        margin-left: 400px;
+        margin-top: 10px;
+        width: 300px;
+      }
+
+      .popupbox h2 {
+        text-align: left;
+        font-family: Verdana;
+        font-size: 36px;
+        margin-left: 400px;
+        margin-top: 10px;
+      }
+
+      #logo {
+        background-image: url(H95bg4rrACvGwq5V2rtVUk-1200-80.jpg);
+        width: 100px;
+        height: 50px;
+        margin-top: 25px;
+        background-size: 100px 50px;
+        margin-left: 25px;
+      }
+
+    </style>
+
+    <a-scene >
+  <a-entity camera position="0 0 0" look-controls wasd-controls> 
+  <a-cursor fuse=true fuseTimeout="500" ></a-cursor>
+  </a-entity>
+  
+  <a-plane id="tvbench" position="-5 -1 -5" color="orange" scale="0.3 0.3 0.3" geometry="primitive: circle"></a-plane>
+  <a-plane id="coffeetable" position="-7 -2 1" color="orange" rotation="0 90 0" scale="0.3 0.3 0.3" geometry="primitive: circle"></a-plane>
+  <a-plane id="diningchair" position="5 -2 1" color="orange" rotation="0 -90 0" scale="0.3 0.3 0.3" geometry="primitive: circle"></a-plane>
+  <a-plane id="sofabed" position="-7 -1 5" color="orange" rotation="0 180 0" scale="0.3 0.3 0.3" geometry="primitive: circle"></a-plane>
+
+  <a-sky src="wu-tong-rongqiao-360.jpg"></a-sky>
+    </a-scene>
+
+  <div id="table" class="popupbox">
+  <div id="logo"></div>
+  <div class="back_button" onclick="removetable()">X</div>
+  <div class="coffee_table"></div>
+  <h1>STOCKHOLM</h1>
+  <p>Coffee table, walnut veneer</p>
+  <h2>Rp 4.999.000</h2>
+  </div>
+
+  <div id="bench" class="popupbox">
+  <div id="logo"></div>
+  <div class="back_button" onclick="removebench()">X</div>
+  <div class="tv_bench"></div>
+  <h1>BESTÅ</h1>
+  <p>TV bench with doors, white stained oak effect/Lappviken white stained oak effect</p>
+  <h2>Rp 2.655.000</h2>
+  </div>
+
+  <div id="chair" class="popupbox">
+  <div id="logo"></div>
+  <div class="back_button" onclick="removechair()">X</div>
+  <div class="dining_chair"></div>
+  <h1>TOSSBERG</h1>
+  <p>Chair, metal black/grey</p>
+  <h2>Rp 3.995.000</h2>
+  </div>
+
+  <div id="bed" class="popupbox">
+  <div id="logo"></div>
+  <div class="back_button" onclick="removebed()">X</div>
+  <div class="sofa_bed"></div>
+  <h1>FRIHETEN</h1>
+  <p>3-seat sofa-bed, Hyllie dark grey</p>
+  <h2>Rp 8.495.000</h2>
+  </div>
+
+  <script>
+    var coffeetable = document.querySelector('#coffeetable');
+    var tvbench = document.querySelector('#tvbench');
+    var diningchair = document.querySelector('#diningchair');
+    var sofabed = document.querySelector('#sofabed');
+
+    coffeetable.addEventListener('fusing', function (evt) {
+    document.getElementById('table').style.display="block";
+    });
+
+    tvbench.addEventListener('fusing', function (evt) {
+    document.getElementById('bench').style.display="block";
+    });
+
+    diningchair.addEventListener('fusing', function (evt) {
+    document.getElementById('chair').style.display="block";
+    });
+
+    sofabed.addEventListener('fusing', function (evt) {
+    document.getElementById('bed').style.display="block";
+    });
+
+    function removetable() {
+    document.getElementById('table').style.display = 'none';
+    }
+
+    function removebench() {
+    document.getElementById('bench').style.display = 'none';
+    }
+
+    function removechair() {
+    document.getElementById('chair').style.display = 'none';
+    }
+
+    function removebed() {
+    document.getElementById('bed').style.display = 'none';
+    }
+
+   </script> 
+
+  </body>
+</html>
