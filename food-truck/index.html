@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello</title>
+    <script src="src/aframe.min.js"></script>
+  </head>
+  <body>
+  	<style> 
+  		.popupbox {
+  			width: 50vw;
+  			height: 60vh;
+
+  			position: fixed;
+  			top: 20vh;
+  			left: 25vw;
+
+  			/*border: 1px solid #ccc;
+  			background-color: white;*/
+  			transition: all 0.5s;
+  			display: none;
+        background-size: cover;
+        background-repeat: no-repeat;
+  		}
+
+      .menumatchalatte {
+         width: 175px; 
+         height: 175px;  
+         margin-left: 100px;
+         margin-top: 80px;
+         background-image: url('menu/MATCHA-LATTE-AR0QoOzRqVFnwg0Y.png');
+         background-size: 200px 200px;
+        }
+
+      .menumoka {
+         width: 175px; 
+         height: 175px; 
+         position: absolute;
+         top: 80px;
+         left: 455px; 
+         background-image: url('menu/MOKA-mnl0wOkVqwiZ3Jky.png');
+         background-size: 200px 200px;
+        }
+      
+      .menuchickenburger {
+         width: 200px; 
+         height: 175px;  
+         margin-left: 100px;
+         margin-top: 80px;
+         background-image: url('menu/burger-png-menu-27.png');
+         background-size: 200px 200px;
+        }
+
+      .menubeefburger {
+         width: 200px; 
+         height: 200px; 
+         position: absolute;
+         top: 80px;
+         left: 455px; 
+         background-image: url('menu/unnamed.png');
+         background-size: 200px 200px;
+        }
+
+      .menufishtaco {
+         width: 200px; 
+         height: 200px; 
+         position: absolute;
+         top: 100px;
+         left: 280px; 
+         background-image: url('menu/190307-fish-tacos-112-1553283299.jpg');
+         background-size: 301.01px 200px;
+         background-position: 10% 70%;
+        } 
+
+      .menuelotesytomates {
+        width: 200px; 
+         height: 200px; 
+         position: absolute;
+         top: 100px;
+         left: 280px; 
+         background-image: url('menu/elote-recipe-2.jpg');
+         background-size: 200px 300px;
+         background-position: 10% 30%;
+        } 
+
+  		.popupbox h1 {
+  			text-align: left;
+        font-family: Source Sans Pro;
+        font-size: 24px;
+        margin-left: 100px;
+  		}
+
+      .popupbox h2 {
+        text-align: center;
+        font-family: Source Sans Pro;
+        font-size: 24px;
+        margin-top: 190px;
+      }
+
+      .popupbox h3 {
+        text-align: center;
+        font-family: Source Sans Pro;
+        font-size: 24px;
+        margin-top: 225px;
+      }
+
+      .popupbox h4 {
+        text-align: center;
+        font-family: Source Sans Pro;
+        font-size: 24px;
+        margin-top: 225px;
+      }
+
+  		.back_button {
+        	width:50px;
+        	height: 50px;
+        	color: red;
+       	 	font-size:36px;
+        	position: absolute;
+        	top:25px;
+        	right: 10px;
+        	font-family: sans-serif;
+        	cursor: pointer;
+      	}
+
+      	#button {
+      		width: 200px;
+			    height: 40px;
+			    margin-top: 30px;
+          margin-left: 100px;
+			    border-radius: 20px;
+          background-color: white; 
+			    cursor: pointer;
+          font-size: 14px;
+          font-color: black;
+          border: 2px solid black;
+      	}
+
+        #button:hover {
+          background-color: #2F80ED; 
+          font-color: white;
+          border: 2px none;
+        }
+
+        #button2 {
+          width: 200px;
+          height: 40px;
+          margin-top: 30px;
+          border-radius: 20px;
+          background-color: white; 
+          cursor: pointer;
+          font-size: 14px;
+          font-color: black;
+          border: 2px solid black;
+        }
+
+        #button2:hover {
+          background-color: #2F80ED; 
+          font-color: white;
+          border: 2px none;
+        }
+
+        #button3 {
+          width: 200px;
+          height: 40px;
+          margin-top: 10px;
+          border-radius: 20px;
+          background-color: white; 
+          cursor: pointer;
+          font-size: 14px;
+          font-color: black;
+          border: 2px solid black;
+        }
+
+        #button3:hover {
+          background-color: #2F80ED; 
+          font-color: white;
+          border: 2px none;
+        }
+
+        #button4 {
+          width: 200px;
+          height: 40px;
+          margin-top: 10px;
+          border-radius: 20px;
+          background-color: white; 
+          cursor: pointer;
+          font-size: 14px;
+          font-color: black;
+          border: 2px solid black;
+        }
+
+
+
+        #button4:hover {
+          background-color: #2F80ED; 
+          font-color: white;
+          border: 2px none;
+        }
+
+  	</style>
+
+    <a-scene>
+    	<a-entity camera position="0 0 0" look-controls wasd-controls> 
+		<a-cursor fuse=true fuseTimeout="500" ></a-cursor>
+		</a-entity>
+
+    <!-- Logo animation -->
+    <a-entity position="-5 1.5 0.7" animation="property: position; to: -5 0.5 0.7; loop: true; dur: 1000">
+    	<a-plane id="logo" position="-5 1.5 0.7" src="cd28168e19f7fdf9c666edd083921129.jpg" scale="1.5 1.5 1.5" rotation="0 90 0">
+      </a-plane>
+    </a-entity>
+
+    <a-entity position="-1 2 -4" animation="property: position; to: -1 1 -4; loop: true; dur: 1000">
+      <a-plane id="citychef" position="-1 2 -4" src="logo/City-Chef-NY-logo-01.jpg" scale="3 2 3" rotation="0 0 0">
+      </a-plane>
+    </a-entity>
+
+    <a-entity position="4 2 -4" animation="property: position; to: 4 1 -4; loop: true; dur: 1000">
+      <a-plane id="fishtaco" position="4 2 -4" src="logo/logo fish taco2.png" scale="6 1 6" rotation="0 -90 0">
+      </a-plane>
+    </a-entity>
+
+    <a-entity position="-20 5 -10" animation="property: position; to: -20 6 -10; loop: true; dur: 1000">
+      <a-plane id="streetstall" position="-20 5 -10" src="logo/elote_finallogo.jpg" scale="5 7 5" rotation="0 50 0">
+      </a-plane>
+    </a-entity>
+
+    <a-entity gltf-model="food_truck/scene.gltf" position="-10 -3 -3" rotation="0 180 0" scale="0.015 0.015 0.015"></a-entity>
+    <a-entity gltf-model="the_city_chef_food_truck/scene.gltf" position="-1.5 -0.5 -7" rotation="0 0 0" scale="3 3 3"></a-entity>
+    <a-entity gltf-model="food truck 2/scene.gltf" position="7 -3 -7" rotation="0 -90 0" scale="3 3 3"></a-entity>
+    <a-entity gltf-model="ice cream truck/scene.gltf" position="-3 -2 7" rotation="0 180 0" scale="2 2 2"></a-entity>
+    <a-entity gltf-model="street_stall/scene.gltf" position="-20 -3 -13" rotation="0 150 0" scale="3 3 3"></a-entity>
+
+      <a-sky src="prague_getty.jpg"></a-sky>
+    </a-scene>
+
+    <!-- Kopi Nako -->
+    <div id="kopi" class="popupbox" style="background-image: url(popup-04.png);">
+    <div class="back_button" onclick="removekopi()">X</div>
+    <div class="menumatchalatte"></div>
+    <h1>Iced Matcha Latte</h1>
+    <button id="button" onclick="order()">order</button>
+    
+    <div class="menumoka">
+    <h2>Iced Moka</h2>
+    <button id="button2" onclick="ordermoka()">order</button>
+    </div>
+    </div>
+
+    <!-- City Chef -->
+    <div id="city" class="popupbox" style="background-image: url(thecitychefpopup-02.png);">
+    <div class="back_button" onclick="removecity()">X</div>
+    <div class="menuchickenburger"></div>
+    <h1>Chicken Burger</h1>
+    <button id="button" onclick="orderchickenburger()">order</button>
+
+    <div class="menubeefburger">
+    <h2>Beef Burger</h2>
+    <button id="button2" onclick="orderbeefburger()">order</button>
+    </div>
+    </div>
+
+
+    <!-- Street Stall -->
+    <div id="street" class="popupbox" style="background-image: url(popup-03.png);">
+    <div class="back_button" onclick="removestreet()">X</div>
+    <div class="menuelotesytomates">
+    <h3>Elotes y tomates</h3>
+    <button id="button3" onclick="orderelotesytomates()">order</button>
+    </div>
+    </div>
+
+    <!-- Fish Taco -->
+    <div id="fish" class="popupbox" style="background-image: url(popup-05.png);">
+    <div class="back_button" onclick="removefish()">X</div>
+    <div class="menufishtaco">
+    <h4>Fish taco</h4>
+    <button id="button4" onclick="orderfishtaco()">order</button>
+    </div>
+    </div>
+
+    <script>
+    var logo = document.querySelector('#logo');
+    var citychef = document.querySelector('#citychef');
+    var streetstall = document.querySelector('#streetstall');
+    var fishtaco = document.querySelector('#fishtaco');
+
+  	logo.addEventListener('fusing', function (evt) {
+		document.getElementById('kopi').style.display="block";
+  	});
+
+    citychef.addEventListener('fusing', function (evt) {
+    document.getElementById('city').style.display="block";
+    });
+
+    streetstall.addEventListener('fusing', function (evt) {
+    document.getElementById('street').style.display="block";
+    });
+
+    fishtaco.addEventListener('fusing', function (evt) {
+    document.getElementById('fish').style.display="block";
+    });
+
+  	function removekopi() {
+  	document.getElementById('kopi').style.display = 'none';
+	  }
+
+    function removecity() {
+    document.getElementById('city').style.display = 'none';
+    }
+
+    function removestreet() {
+    document.getElementById('street').style.display = 'none';
+    }
+
+    function removefish() {
+    document.getElementById('fish').style.display = 'none';
+    }
+
+	  function order() {
+		window.open("https://wa.me/+6281280284153?text=hello i want one Ice Matcha Latte");
+	  }
+
+    function ordermoka() {
+    window.open("https://wa.me/+6281280284153?text=hello i want one Ice Moka");
+    }
+
+    function orderchickenburger() {
+    window.open("https://wa.me/+6281280284153?text=hello i want one Chicken Burger");
+    }
+
+    function orderbeefburger() {
+    window.open("https://wa.me/+6281280284153?text=hello i want one Beef Burger");
+    }
+
+    function orderelotesytomates() {
+    window.open("https://wa.me/+6281280284153?text=hello i want one Elotes y Tomates");
+    }
+
+    function orderfishtaco() {
+    window.open("https://wa.me/+6281280284153?text=hello i want one Fish Taco");
+    }
+
+</script> 
+  </body>
+</html>
