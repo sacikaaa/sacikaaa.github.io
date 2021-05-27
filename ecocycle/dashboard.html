@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My App</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="assets/global.css">
+		<style type="text/css">
+			#beforeclick {
+      		display: block;
+    	}
+
+    		#afterclick {
+      		display: none;
+    	}
+
+    		#button {
+    		position: absolute;
+    		left: 5%;
+    		bottom: 50px;
+    		width: 90%;
+    		height: 70px;
+    		background-color: #6B8D4D; 
+    		border-radius: 30px;
+    		cursor: pointer;
+    		color: #EFF5E0;
+
+    		font-family: "Myriad pro";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 24px;
+    		line-height: 36px;
+    		text-align: center;
+  		}
+
+    		#whereiam {
+    		position: relative;
+    		top: 20px;
+    		margin: 30px;
+
+    		color: black !important;
+    		font-family: "OrpheusPro-Bold";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 24px;
+    		line-height: 36px;
+    		text-align: left;
+  		}
+
+    		.typo_heading {
+    		position: relative;
+    		top: 20px;
+    		margin: 30px;
+
+    		color: #5A7341;
+    		font-family: "OrpheusPro-Bold";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 48px;
+    		line-height: 60px;
+    		text-align: center;
+  		}
+
+  			#date, #time {
+  			width: 100%;
+  			margin-top: 10px;
+  			color: #5A7341;
+  			font-family: "OrpheusPro-Bold";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 18px;
+    		text-align: left;
+  		}
+
+			#date_icn, #time_icn {
+			width: 25px;
+			height: 25px;
+			background-position: center;
+			background-size: cover;
+			float: left;
+			position: relative;
+			top: 5px;
+			margin-right: 10px;
+  		}
+
+  			#back_icn {
+  			display: none;
+  			/*filter:invert(100%);
+  			filter:drop-shadow(8px 8px 10px gray);*/
+			width: 50px;
+			height: 50px;
+			background-position: center;
+			background-size: cover;
+			position: absolute;
+			top: 20px;
+			left: 30px;
+			z-index: 999;
+			background-image: url('assets/arrow2.png');
+  		}
+
+			#date_icn {
+			background-image: url('assets/date.png');
+		}
+
+			#time_icn {
+			background-image: url('assets/time.png');
+		}
+
+			#withbg {
+			background-position: center;
+			background-size: cover;
+  		}
+
+			#participant_heading {
+			position: relative;
+			top: 20px;
+
+			width: 100%;
+    		color: black !important;
+    		font-family: "OrpheusPro-Bold";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 24px;
+    		line-height: 36px;
+    		text-align: left;
+  		}
+
+			.parties {
+			width: 80px;
+			height: 80px;
+			position: relative;
+			top: 30px;
+			margin-top: 10px;
+			margin-right: 20px;
+			margin-bottom: 30px;
+			border-radius: 80px;
+			background-color: grey;
+			float: left;
+			background-position: center;
+			background-size: cover;
+  		}
+
+		</style>
+	</head>
+	<body>
+		<div class="boxgreen2" id="withbg" >
+			<div id="back_icn" onclick="location.href='dashboard.html'"></div>
+			<!-- <img src="assets/logo.png" style="position: relative; top: 220px; left: 43%; width: 70px; height: 70px;"> -->
+			<!-- <div class=" typo_heading">Thank you</div> -->
+		</div>
+
+		<div class="boxbeige2">
+			<!-- <div class="typo_form">Your information has been received</div> -->
+
+		<!-- <button id="button">Back to home</button> -->
+
+		<div id="beforeclick">
+			<div class="typo_heading">Where am I closest to?</div>
+			<button type="button" id="button" onclick="getLocation()">Access my location</button>
+		</div>
+
+		<div id="afterclick">
+			<div id="whereiam"></div>
+		<input type="hidden" id="theloc" />
+		<input type="hidden" id="thedate"/>
+		<input type="hidden" id="thetime"/>
+		<br><br>
+		<button type="button" id="button" onclick="location.href='form.html?theloc=' + document.getElementById('theloc').value + '&thedate=' + document.getElementById('thedate').value + '&thetime=' + document.getElementById('thetime').value;">Donate</button>
+
+<script>
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+	var lat = parseFloat(position.coords.latitude);
+	var long = parseFloat(position.coords.longitude);
+	
+	/* look for lat, long in google maps */
+	/* https://www.google.com/maps/place/Pondok+Indah+Mall/@-6.2655371,106.784339,17z */
+	/* after @ == -6.2655371 is lat, 106.784339 is long, 17z is google map zoom level */
+	var sms_lat = -6.2427087;
+	var sms_long = 106.63131;
+
+	var sency_lat = -6.2267195;
+	var sency_long = 106.795604;
+
+	var pim_lat = -6.2655371
+	var pim_long = 106.784339;
+
+	// alert(getDistance(lat,long,sms_lat,sms_long) + ' ' + getDistance(lat,long,sency_lat,sency_long) + ' ' + getDistance(lat,long,pim_lat,pim_long))
+	var distance_arr = [getDistance(lat,long,sms_lat,sms_long), getDistance(lat,long,sency_lat,sency_long), getDistance(lat,long,pim_lat,pim_long)];
+
+	// alert(closest(distance_arr, 0));
+	var xx = closest(distance_arr, 0);
+	var date = '';
+	var topbg = '';
+	var time = '';
+	if (xx == getDistance(lat,long,sms_lat,sms_long)) {
+		var i = 'Summarecon Mall Serpong';
+		var date = 'May 5, 2021';
+		var time = '09:00 - 11:00';
+		var topbg = 'assets/sms.jpg';
+	} else if (xx == getDistance(lat,long,sency_lat,sency_long)) {
+		var i = 'Senayan City';
+		var date = 'May 15, 2021';
+		var time = '09:00 - 11:00';
+		var topbg = 'assets/sency.jpg';
+	} else {
+		var i = 'Pondok Indah Mall';
+		var date = 'May 25, 2021';
+		var time = '09:00 - 11:00';
+		var topbg = 'assets/pim.jpg';
+	}
+	document.getElementById('theloc').value = i;
+	document.getElementById('thedate').value = date;
+	document.getElementById('thetime').value = time;
+	document.getElementById('withbg').style.backgroundImage = "url('" + topbg + "'";
+	document.getElementById('back_icn').style.display = "block";
+  document.getElementById('beforeclick').style.display= "none";
+  document.getElementById('afterclick').style.display= "block";
+  document.getElementById('whereiam').innerHTML= i + '<div id="date"><div id="date_icn"></div>' + date + '</div><div id="time"><div id="time_icn"></div>' + time + '</div><div id="participant_heading">Participants</div><div class="parties" style="background-image:url(\'assets/sms.jpg\')"></div><div class="parties" style="background-image:url(\'assets/pim.jpg\')"></div><div class="parties"></div>';
+}
+
+function closest(array, num) {
+  var i = 0;
+  var minDiff = 1000;
+  var ans;
+  for (i in array) {
+    var m = Math.abs(num - array[i]);
+    if (m < minDiff) {
+      minDiff = m;
+      ans = array[i];
+    }
+  }
+  return ans;
+}
+
+function getDistance(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+
+</script>
+		</div>
+	</body>
+</html>

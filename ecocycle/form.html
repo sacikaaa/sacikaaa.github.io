@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My App</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="assets/global.css">
+		<style type="text/css">
+			#user_location {
+			position: relative;
+    		top: 20px;
+    		margin: 30px;
+
+    		color: black !important;
+    		font-family: "OrpheusPro-Bold";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 36px;
+    		line-height: 48px;
+    		text-align: left;
+    	}	
+
+    		#thedate {
+    		position: relative;
+    		top: -10px;
+    		margin-left: 30px;
+    		float: left;
+
+    		color: #888;
+    		font-family: "OrpheusPro-Bold";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 16px;
+    		line-height: 24px;
+    		text-align: left;
+    	}
+
+    		#thetime {	
+    		position: relative;
+    		top: -10px;
+    		float: left;
+    		margin-left: 10px;	
+
+    		color: #888;
+    		font-family: "OrpheusPro-Bold";
+    		font-style: normal;
+    		font-weight: bold;
+    		font-size: 16px;
+    		line-height: 24px;
+    		text-align: left;
+    	} 
+
+		</style>
+	</head>	
+	<body>
+		<div class="fullboxbeige">
+			<div id="user_location"></div>
+			<div id="thedate"></div>
+			<div id="thetime"></div>
+			<div class="form" style="margin-top: 70px;">
+				<label>Name</label><br>
+				<input type="text" name="Name" style="text-align: left" />
+				<br><br>
+				<label>What do you want to donate?</label><br>
+				<select name="category" value="">
+					<option value="Plasticwaste">Plastic waste </option>
+					<option value="Paper/cardwaste">Paper/card waste</option>
+					<option value="Tinsandmetals">Tins and metals</option>
+					<option value="Ceramicsandglass">Ceramics and glass</option>
+				</select>	
+				<br><br>
+				<label>Image</label><br>
+				<input type="file" name="file" id="file" class="inputfile">
+				<div class="tricky" onclick="meh()">Choose a file</div>
+				<script>
+					function meh() {
+						//alert('test');
+					document.getElementById('file').click();
+					}
+				</script>
+				<br><br>
+				<label>Note</label><br>
+				<input type="text" name="Note" style="text-align: left"/>
+				<br><br>
+			</div>	
+			<div class="typo_cancel" onclick="location.href='dashboard.html'">Cancel</div>
+			<button type="button" id="button" onclick="location.href='thankyou.html'">Submit</button>
+		</div>
+	</body>
+</html>	
+<script type="text/javascript">
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const theloc = urlParams.get('theloc');
+	const thedate = urlParams.get('thedate');
+	const thetime = urlParams.get('thetime');
+	// alert(userLocation);
+	document.getElementById('user_location').innerHTML = theloc;
+	document.getElementById('thedate').innerHTML = thedate;
+	document.getElementById('thetime').innerHTML = thetime;
+
+</script>
